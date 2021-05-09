@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class log_transaksi extends Model
+class logic extends Model
 {
     use HasFactory;
     protected $fillable = [
-      'user_id','transaksi_id','method','amount'
+      'number','enum'
     ];
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Account;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{saldo_user,User};
+use App\Models\{saldo_user,User,log_transaksi};
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
@@ -25,44 +25,19 @@ class SaldoController extends Controller
       }
     }
 
-    // TopUp
-    public function topUp(Request $request, $id)
-    {
+    //Mutasi transaksi
+   public function mutasi()
+   {
       $token = Auth::user()->token();
+
       if ($token) {
+        $mutasi = log_transaksi::where('user_id', Auth::id())->get();
 
-      $validator = Validator::make($request->all(),[
-        'saldo'      => 'required',
-      ]);
-
-       if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
-        }
-
-        $saldo = auth()->user()->saldo()->find($id);
-
-        if (!$saldo) {
-          return response()->json([
-              'success' => false,
-              'message' => 'Saldo with id ' . $id . ' not found'
-          ]);
-        }
-
-        $updated = $saldo->update([
-          'saldo' => $request->saldo
+        return \response()->json([
+          'mutasi' => $mutasi
         ]);
-
-        if ($updated)
-            return response()->json([
-                'success' => true,
-                'saldo'   => $saldo
-            ]);
-        else
-            return response()->json([
-                'success' => false,
-                'message' => 'Product could not be updated'
-            ], 500);
       }
-    }
+   }
+
 
 }

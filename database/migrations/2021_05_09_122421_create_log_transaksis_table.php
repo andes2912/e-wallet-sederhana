@@ -17,7 +17,7 @@ class CreateLogTransaksisTable extends Migration
             $table->id();
             $table->unsignedInteger('user_id');
             $table->unsignedBigInteger('transaksi_id');
-            $table->enum('method',['Withdraw','Topup','Transfer']);
+            $table->string('method');
             $table->integer('amount');
             $table->timestamps();
 
