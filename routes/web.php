@@ -18,4 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/logic','LogicController@logic');
-Route::post('/logic','LogicController@proses');
+
+Route::post('/logic-reject','LogicController@prosesReject');
+Route::post('/logic-tengah','LogicController@prosesTengah');
+Route::post('/logic-kiri','LogicController@prosesKiri');
