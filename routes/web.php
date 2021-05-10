@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/logic','LogicController@logic');
+Route::get('/','LogicController@logic');
 
 Route::post('/logic-reject','LogicController@prosesReject');
 Route::post('/logic-tengah','LogicController@prosesTengah');
